@@ -48,8 +48,26 @@ public class AnswerSheet implements Entity<AnswerSheet> {
         answerSheetId, studentId, examinationId, score, blankQuizList, answerSheetItemList);
   }
 
-  public void submit(int number, String answer) {
-    answerSheetItemList.add(new AnswerSheetItem(number, answer, 0));
+  public AnswerSheet(
+      String studentId,
+      String examinationId,
+      int score,
+      List<BlankQuiz> blankQuizList,
+      List<AnswerSheetItem> answerSheetItemList) {
+    this.studentId = studentId;
+    this.examinationId = examinationId;
+    this.score = score;
+    this.blankQuizList = blankQuizList;
+    this.answerSheetItemList = answerSheetItemList;
+  }
+
+  public static AnswerSheet submit(
+      String studentId,
+      String examinationId,
+      int score,
+      List<BlankQuiz> blankQuizList,
+      List<AnswerSheetItem> answerSheetItemList) {
+    return new AnswerSheet(studentId, examinationId, score, blankQuizList, answerSheetItemList);
   }
 
   public void handIn() {
@@ -98,7 +116,7 @@ public class AnswerSheet implements Entity<AnswerSheet> {
 
   @Getter
   @AllArgsConstructor
-  private class AnswerSheetItem implements ValueObject<AnswerSheetItem> {
+  public static class AnswerSheetItem implements ValueObject<AnswerSheetItem> {
     private int number;
     private String answer;
     private int score;
@@ -111,7 +129,7 @@ public class AnswerSheet implements Entity<AnswerSheet> {
 
   @Getter
   @AllArgsConstructor
-  private class BlankQuiz implements ValueObject<BlankQuiz> {
+  public static class BlankQuiz implements ValueObject<BlankQuiz> {
     private int number;
     private String answer;
     private String referenceAnswer;
