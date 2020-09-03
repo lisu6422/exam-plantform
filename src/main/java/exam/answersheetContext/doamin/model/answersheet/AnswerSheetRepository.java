@@ -1,4 +1,4 @@
-package exam.paperContext.domain.model.answersheet;
+package exam.answersheetContext.doamin.model.answersheet;
 
 import java.util.List;
 
